@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ulic.core.config.dao.ConfigBusinessMapper">
+  <resultMap id="BaseResultMap" type="com.ulic.core.config.bean.ConfigBusiness">
+   
+    <id column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="business_value" jdbcType="VARCHAR" property="businessValue" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+   
+    business_type, business_value, remark, version, creator, created_time, editor, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    
+    select 
+    <include refid="Base_Column_List" />
+    from config_business
+    where business_type = #{businessType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  
+    delete from config_business
+    where business_type = #{businessType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ulic.core.config.bean.ConfigBusiness">
+  
+    insert into config_business (business_type, business_value, remark, 
+      version, creator, created_time, 
+      editor, updated_time)
+    values (#{businessType,jdbcType=VARCHAR}, #{businessValue,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{editor,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ulic.core.config.bean.ConfigBusiness">
+    insert into config_business
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="businessValue != null">
+        business_value,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="editor != null">
+        editor,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="businessValue != null">
+        #{businessValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null">
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ulic.core.config.bean.ConfigBusiness">
+   
+    update config_business
+    <set>
+      <if test="businessValue != null">
+        business_value = #{businessValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null">
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where business_type = #{businessType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ulic.core.config.bean.ConfigBusiness">
+   
+    update config_business
+    set business_value = #{businessValue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where business_type = #{businessType,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" resultType="map">
+    select 
+    business_type as businessType,
+    business_value as business_value
+    from config_business
+  </select>
+  <select id="selectByTypeList" parameterType="java.util.List" resultType="map">
+    select 
+    business_type as businessType,
+    business_value as business_value
+    from config_business
+    where 1= 1
+    <if test="typeList.size > 0">
+    	and business_type in 
+    	<foreach collection="typeList" item="businessType" open="(" separator="," close=")">
+    		#{businessType,jdbcType=VARCHAR}
+    	</foreach>
+    </if>
+    	
+  </select>
+     <select id="selectSelective" parameterType="map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />  from config_business
+		where 1=1
+		 
+		<if test="businessType != null and businessType !=''">
+			and business_type=#{businessType}
+		</if>
+  </select>
+  
+
+</mapper>

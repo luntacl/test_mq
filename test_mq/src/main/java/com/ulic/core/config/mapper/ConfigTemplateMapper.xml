@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ulic.core.config.dao.ConfigTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.ulic.core.config.bean.ConfigTemplate" >
+    <id column="template_id" property="templateId" jdbcType="VARCHAR" />
+    <result column="template_type" property="templateType" jdbcType="VARCHAR" />
+    <result column="template_content" property="templateContent" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    template_id, template_type, template_content, remark, creator, created_time, editor, 
+    updated_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_template
+    where template_id = #{templateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from config_template
+    where template_id = #{templateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ulic.core.config.bean.ConfigTemplate" >
+    insert into config_template (template_id, template_type, template_content, 
+      remark, creator, created_time, 
+      editor, updated_time)
+    values (#{templateId,jdbcType=VARCHAR}, #{templateType,jdbcType=VARCHAR}, #{templateContent,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{editor,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ulic.core.config.bean.ConfigTemplate" >
+    insert into config_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="templateType != null" >
+        template_type,
+      </if>
+      <if test="templateContent != null" >
+        template_content,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null" >
+        #{templateType,jdbcType=VARCHAR},
+      </if>
+      <if test="templateContent != null" >
+        #{templateContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ulic.core.config.bean.ConfigTemplate" >
+    update config_template
+    <set >
+      <if test="templateType != null" >
+        template_type = #{templateType,jdbcType=VARCHAR},
+      </if>
+      <if test="templateContent != null" >
+        template_content = #{templateContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where template_id = #{templateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ulic.core.config.bean.ConfigTemplate" >
+    update config_template
+    set template_type = #{templateType,jdbcType=VARCHAR},
+      template_content = #{templateContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where template_id = #{templateId,jdbcType=VARCHAR}
+  </update>
+</mapper>

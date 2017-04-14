@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ulic.core.channel.dao.PartnerMapper">
+  <!--<cache eviction="LRU" type="insure.platform.common.redis.LoggingRedisCache"/>-->
+  <resultMap id="BaseResultMap" type="com.ulic.core.channel.bean.Partner">
+    <id column="partner_id" jdbcType="BIGINT" property="partnerId" />
+    <result column="channel_type" jdbcType="INTEGER" property="channelType" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="login_passWord" jdbcType="VARCHAR" property="loginPassword" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="request_remark" jdbcType="VARCHAR" property="requestRemark" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_desc" jdbcType="VARCHAR" property="companyDesc" />
+    <result column="activated" jdbcType="INTEGER" property="activated" />
+    <result column="confirmed" jdbcType="INTEGER" property="confirmed" />
+    <result column="disabled" jdbcType="INTEGER" property="disabled" />
+    <result column="deactivated_time" jdbcType="TIMESTAMP" property="deactivatedTime" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="expandemployee_id" jdbcType="BIGINT" property="expandemployeeId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    partner_id, channel_type, userId, email, login_passWord, contact_name, contact_phone, 
+    request_remark, company_name, company_desc, activated, confirmed, disabled, deactivated_time, 
+    sign, expandemployee_id, remark, created_time, editor, updated_time
+  </sql>
+  <select id="flushCache" resultType="int" flushCache="true" useCache="false">
+    select 1 from dual
+  </select>
+</mapper>

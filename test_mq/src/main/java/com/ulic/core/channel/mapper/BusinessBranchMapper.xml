@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ulic.core.channel.dao.BusinessBranchMapper">
+  <resultMap id="BaseResultMap" type="com.ulic.core.channel.bean.BusinessBranch">
+    <id column="branch_id" jdbcType="VARCHAR" property="branchId" />
+    <result column="branch_name" jdbcType="VARCHAR" property="branchName" />
+    <result column="branch_manager" jdbcType="VARCHAR" property="branchManager" />
+    <result column="branch_manager_phone" jdbcType="VARCHAR" property="branchManagerPhone" />
+    <result column="branch_manager_email" jdbcType="VARCHAR" property="branchManagerEmail" />
+    <result column="wechat_openid" jdbcType="VARCHAR" property="wechatOpenid" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    branch_id, branch_name, branch_manager, branch_manager_phone, branch_manager_email, 
+    wechat_openid, remark, created_time, editor, updated_time
+  </sql>
+  <select id="flushCache" resultType="int" flushCache="true" useCache="false">
+    select 1 from dual
+  </select>
+  
+</mapper>

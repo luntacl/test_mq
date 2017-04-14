@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ulic.core.channel.dao.ProductChannelMapper">
+  <!--<cache eviction="LRU" type="insure.platform.common.redis.LoggingRedisCache"/>-->
+  <resultMap id="BaseResultMap" type="com.ulic.core.channel.bean.ProductChannel">
+    <id column="product_metadata_id" jdbcType="BIGINT" property="productMetadataId" />
+    <id column="channel_id" jdbcType="VARCHAR" property="channelId" />
+    <result column="product_channel_id" jdbcType="BIGINT" property="productChannelId" />
+    <result column="fee_strategy_id" jdbcType="BIGINT" property="feeStrategyId" />
+    <result column="product_channel_status" jdbcType="INTEGER" property="productChannelStatus" />
+    <result column="online_time" jdbcType="TIMESTAMP" property="onlineTime" />
+    <result column="offline_time" jdbcType="TIMESTAMP" property="offlineTime" />
+    <result column="maintain_starttime" jdbcType="TIMESTAMP" property="maintainStarttime" />
+    <result column="maintain_endtime" jdbcType="TIMESTAMP" property="maintainEndtime" />
+    <result column="maintain_url" jdbcType="VARCHAR" property="maintainUrl" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="ResultMapWithFee">
+  	 <id column="channel_id" jdbcType="VARCHAR" property="channelId" />
+  	 <result column="fee_strategy_id" jdbcType="BIGINT" property="feeStrategyId" />
+   	 <result column="fee_strategy_name" jdbcType="VARCHAR" property="feeStrategyName" />
+   	 <result column="fee_rate" jdbcType="REAL" property="feeRate" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    product_metadata_id, channel_id, product_channel_id, fee_strategy_id, product_channel_status, 
+    online_time, offline_time, maintain_starttime, maintain_endtime, maintain_url, remark, 
+    creator, created_time, editor, updated_time
+  </sql>
+  <select id="getProductchannelBymetadataId" parameterType="String" resultMap="ResultMapWithFee">
+  	SELECT pc.channel_id, pc.fee_strategy_id, f.fee_strategy_name, f.fee_rate FROM product_channel pc,fee_strategy f 
+	where pc.fee_strategy_id=f.fee_strategy_id and  product_metadata_id = #{productmetadataId}
+  </select>
+  <select id="flushCache" resultType="int" flushCache="true" useCache="false">
+    select 1 from dual
+  </select>
+</mapper>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ulic.core.config.dao.ConfigSystemMapper">
+<!-- <cache eviction="LRU" type="insure.platform.common.redis.LoggingRedisCache" />
+ -->  <resultMap id="BaseResultMap" type="com.ulic.core.config.bean.ConfigSystem">
+  
+    <id column="config_system_id" jdbcType="BIGINT" property="configSystemId" />
+    <result column="config_system_category" jdbcType="VARCHAR" property="configSystemCategory" />
+    <result column="config_system_section" jdbcType="VARCHAR" property="configSystemSection" />
+    <result column="config_system_key" jdbcType="VARCHAR" property="configSystemKey" />
+    <result column="config_system_value" jdbcType="VARCHAR" property="configSystemValue" />
+    <result column="config_system_remark" jdbcType="VARCHAR" property="configSystemRemark" />
+    <result column="config_system_readonly" jdbcType="INTEGER" property="configSystemReadonly" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+   
+    config_system_id, config_system_category, config_system_section, config_system_key, 
+    config_system_value, config_system_remark, config_system_readonly, version, creator, 
+    created_time, editor, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+   
+    select 
+    <include refid="Base_Column_List" />
+    from config_system
+    where config_system_id = #{configSystemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+   
+    delete from config_system
+    where config_system_id = #{configSystemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ulic.core.config.bean.ConfigSystem">
+   
+    insert into config_system (config_system_id, config_system_category, 
+      config_system_section, config_system_key, config_system_value, 
+      config_system_remark, config_system_readonly, 
+      version, creator, created_time, 
+      editor, updated_time)
+    values (#{configSystemId,jdbcType=BIGINT}, #{configSystemCategory,jdbcType=VARCHAR}, 
+      #{configSystemSection,jdbcType=VARCHAR}, #{configSystemKey,jdbcType=VARCHAR}, #{configSystemValue,jdbcType=VARCHAR}, 
+      #{configSystemRemark,jdbcType=VARCHAR}, #{configSystemReadonly,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{editor,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ulic.core.config.bean.ConfigSystem">
+    insert into config_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configSystemId != null">
+        config_system_id,
+      </if>
+      <if test="configSystemCategory != null">
+        config_system_category,
+      </if>
+      <if test="configSystemSection != null">
+        config_system_section,
+      </if>
+      <if test="configSystemKey != null">
+        config_system_key,
+      </if>
+      <if test="configSystemValue != null">
+        config_system_value,
+      </if>
+      <if test="configSystemRemark != null">
+        config_system_remark,
+      </if>
+      <if test="configSystemReadonly != null">
+        config_system_readonly,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="editor != null">
+        editor,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configSystemId != null">
+        #{configSystemId,jdbcType=BIGINT},
+      </if>
+      <if test="configSystemCategory != null">
+        #{configSystemCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemSection != null">
+        #{configSystemSection,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemKey != null">
+        #{configSystemKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemValue != null">
+        #{configSystemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemRemark != null">
+        #{configSystemRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemReadonly != null">
+        #{configSystemReadonly,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null">
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ulic.core.config.bean.ConfigSystem">
+    update config_system
+    <set>
+      <if test="configSystemCategory != null">
+        config_system_category = #{configSystemCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemSection != null">
+        config_system_section = #{configSystemSection,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemKey != null">
+        config_system_key = #{configSystemKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemValue != null">
+        config_system_value = #{configSystemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemRemark != null">
+        config_system_remark = #{configSystemRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="configSystemReadonly != null">
+        config_system_readonly = #{configSystemReadonly,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null">
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where config_system_id = #{configSystemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ulic.core.config.bean.ConfigSystem">
+    update config_system
+    set config_system_category = #{configSystemCategory,jdbcType=VARCHAR},
+      config_system_section = #{configSystemSection,jdbcType=VARCHAR},
+      config_system_key = #{configSystemKey,jdbcType=VARCHAR},
+      config_system_value = #{configSystemValue,jdbcType=VARCHAR},
+      config_system_remark = #{configSystemRemark,jdbcType=VARCHAR},
+      config_system_readonly = #{configSystemReadonly,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where config_system_id = #{configSystemId,jdbcType=BIGINT}
+  </update>
+  <select id="getValueByKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from config_system
+		where config_system_category =
+		#{configSystemCategory,jdbcType=VARCHAR}
+		and
+		config_system_section =
+		#{section,jdbcType=VARCHAR}
+		and
+		config_system_key =
+		#{keyName,jdbcType=VARCHAR}
+	</select>
+
+	
+
+	<!-- 分页查询 -->
+
+	<select id="selectByInfo" resultMap="BaseResultMap" parameterType="Map">
+
+		select
+
+		<include refid="Base_Column_List" />
+
+		from config_system
+
+		where 1=1
+
+		<if test="configSystemId != null and configSystemId!=''">
+
+			and config_system_id like concat(concat('%',#{configSystemId}),'%')
+
+		</if>
+
+		<if test="configSystemCategory != null and configSystemCategory!=''">
+
+			and config_system_category=#{configSystemCategory}
+
+		</if>
+
+		<if test="configSystemSection != null and configSystemSection!=''">
+
+			and config_system_section=#{configSystemSection}
+
+		</if>
+
+		<if test="configSystemKey != null and configSystemKey!=''">
+
+			and config_system_key=#{configSystemKey}
+
+		</if>
+
+		<if test="configSystemValue != null and configSystemValue!=''">
+
+			and config_system_value=#{configSystemValue}
+
+		</if>
+
+		<if test="configSystemRemark != null and configSystemRemark!=''">
+
+			and config_system_remark=#{configSystemRemark}
+
+		</if>
+
+		<if test="configSystemReadonly != null and configSystemReadonly!=''">
+
+			and config_system_readonly=#{configSystemReadonly}
+
+		</if>
+
+		<if test="createdTime != null and createdTime!=''">
+
+			and created_time=#{createdTime}
+
+		</if>
+
+		<if test="updatedTime != null and updatedTime!=''">
+
+			and updated_time=#{updatedTime}
+
+		</if>
+
+		<if test="version != null and version!=''">
+
+			and version=#{version}
+
+		</if>
+
+		order by created_time
+
+		<if test="page!=null and rows!=null">
+
+			limit #{page},#{rows}
+
+		</if>
+
+	</select>
+
+	<select id="countByInfo" parameterType="map" resultType="int">
+
+		select count(1) from config_system
+
+		where 1=1
+
+		<if test="configSystemId != null and configSystemId!=''">
+
+			and config_system_id like concat(concat('%',#{configSystemId}),'%')
+
+		</if>
+
+		<if test="configSystemCategory != null and configSystemCategory!=''">
+
+			and config_system_category=#{configSystemCategory}
+
+		</if>
+
+		<if test="configSystemSection != null and configSystemSection!=''">
+
+			and config_system_section=#{configSystemSection}
+
+		</if>
+
+		<if test="configSystemKey != null and configSystemKey!=''">
+
+			and config_system_key=#{configSystemKey}
+
+		</if>
+
+		<if test="configSystemValue != null and configSystemValue!=''">
+
+			and config_system_value=#{configSystemValue}
+
+		</if>
+
+		<if test="configSystemRemark != null and configSystemRemark!=''">
+
+			and config_system_remark=#{configSystemRemark}
+
+		</if>
+
+		<if test="configSystemReadonly != null and configSystemReadonly!=''">
+
+			and config_system_readonly=#{configSystemReadonly}
+
+		</if>
+
+		<if test="createdTime != null and createdTime!=''">
+
+			and created_time=#{createdTime}
+
+		</if>
+
+		<if test="updatedTime != null and updatedTime!=''">
+
+			and updated_time=#{updatedTime}
+
+		</if>
+
+		<if test="version != null and version!=''">
+
+			and version=#{version}
+
+		</if>
+
+	</select>
+</mapper>

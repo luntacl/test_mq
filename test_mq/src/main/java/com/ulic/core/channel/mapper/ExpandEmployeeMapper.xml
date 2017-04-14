@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ulic.core.channel.dao.ExpandEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.ulic.core.channel.bean.ExpandEmployee">
+    <id column="expand_employee_id" jdbcType="BIGINT" property="expandEmployeeId" />
+    <result column="expand_employee_name" jdbcType="VARCHAR" property="expandEmployeeName" />
+    <result column="expand_employee_phone" jdbcType="VARCHAR" property="expandEmployeePhone" />
+    <result column="expand_employee_email" jdbcType="VARCHAR" property="expandEmployeeEmail" />
+    <result column="wechat_openid" jdbcType="VARCHAR" property="wechatOpenid" />
+    <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
+    <result column="activated" jdbcType="INTEGER" property="activated" />
+    <result column="disabled" jdbcType="INTEGER" property="disabled" />
+    <result column="deactivated_time" jdbcType="TIMESTAMP" property="deactivatedTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    expand_employee_id, expand_employee_name, expand_employee_phone, expand_employee_email, 
+    wechat_openid, department_id, activated, disabled, deactivated_time, remark, created_time, 
+    editor, updated_time
+  </sql>
+  <select id="flushCache" resultType="int" flushCache="true" useCache="false">
+    select 1 from dual
+  </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ulic.core.channel.dao.ChannelMapper">
+  <resultMap id="BaseResultMap" type="com.ulic.core.channel.bean.Channel">
+    <id column="channel_id" jdbcType="VARCHAR" property="channelId" />
+    <result column="channel_name" jdbcType="VARCHAR" property="channelName" />
+    <result column="channel_manager" jdbcType="VARCHAR" property="channelManager" />
+    <result column="partner_id" jdbcType="BIGINT" property="partnerId" />
+    <result column="ip_list" jdbcType="VARCHAR" property="ipList" />
+    <result column="token_key" jdbcType="VARCHAR" property="tokenKey" />
+    <result column="security_type_id" jdbcType="VARCHAR" property="securityTypeId" />
+    <result column="security_key" jdbcType="VARCHAR" property="securityKey" />
+    <result column="channel_status" jdbcType="INTEGER" property="channelStatus" />
+    <result column="channel_config" jdbcType="VARCHAR" property="channelConfig" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    channel_id, channel_name, channel_manager, partner_id, ip_list, token_key, security_type_id, 
+    security_key, channel_status, channel_config, remark, creator, created_time, editor, 
+    updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="String" resultMap="BaseResultMap">
+    SELECT * FROM channel where channel_id=#{channelId}
+  </select>
+
+</mapper>
