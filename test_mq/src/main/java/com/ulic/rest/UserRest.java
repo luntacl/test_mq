@@ -1,6 +1,7 @@
 package com.ulic.rest;
 
 import com.sun.tools.javac.util.Assert;
+import com.ulic.core.batchhandler.SmsBatchHandler;
 import com.ulic.core.channel.bean.Channel;
 import com.ulic.core.channel.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,15 @@ public class UserRest {
     private StringRedisTemplate stringRedisTemplate;
 
     @Autowired
-    private RedisTemplate redisTemplate;
-
+    private ChannelService channelService;
 
     @Autowired
-    private ChannelService channelService;
-    @RequestMapping(value = "add",method = RequestMethod.GET)
-    public String addUser(
+    private SmsBatchHandler smsBatchHandler;
+
+    @RequestMapping(value = "testRedis", method = RequestMethod.GET)
+    public String testRedis(
 //            @RequestParam("userName") String name,@RequestParam("userAge") String age
- ) {
+    ) {
 //        Channel channel = channelService.selectByPrimaryKey("101");
 //        System.out.print(channel.getChannelName());
 //        return channel.toString();
@@ -36,4 +37,10 @@ public class UserRest {
         stringRedisTemplate.opsForValue().set("aaa", "111");
         return stringRedisTemplate.opsForValue().get("aaa");
     }
+
+    @RequestMapping(value = "sms", method = RequestMethod.GET)
+    public void testsendSMS() {
+//        smsBatchHandler.sendMessage("YIL0121JK05003170000076");
+    }
 }
+

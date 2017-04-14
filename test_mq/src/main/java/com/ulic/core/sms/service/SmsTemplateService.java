@@ -11,7 +11,6 @@ public interface SmsTemplateService {
 	 * @param templateId
 	 * @return
 	 */
-	@Cacheable(value = "SmsTemplateService", key = "#templateId")
 	public SmsTemplate findByTemplateId(String templateId);
 	
 }

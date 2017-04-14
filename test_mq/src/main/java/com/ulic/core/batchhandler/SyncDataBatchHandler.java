@@ -11,7 +11,10 @@ public class SyncDataBatchHandler extends SimplyDisruptorBatch<String> {
 
     @Override
     public void handle(String value) {
-        super.handle(value);
+        syncDataToCore(value);
     }
 
+    private void syncDataToCore(String value) {
+
+    }
 }

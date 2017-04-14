@@ -49,7 +49,7 @@ public class SmsBatchHandler extends SimplyDisruptorBatch<String> {
         if (proposal != null) {
             String phone = proposal.getHolderPhone();
             String appName = proposal.getHolderName();
-            if (Strings.isNullOrEmpty(phone)) {
+            if (!Strings.isNullOrEmpty(phone)) {
                 Map<String, Object> mapData = new HashMap<>();
                 SmsTemplate smsTemplate = templateService.findByTemplateId("001");//TODO tmplateId 后期方式后期定方案
                 String message = smsTemplate.getSmsTemplateContent();
